@@ -1,21 +1,36 @@
 import React from "react";
 import styles from "./Card.module.css";
-import CardImage from "../../assets/CardImage.png";
+import Chip from "@mui/material/Chip";
 
-const QtifyCard = () => {
-  return (
-    <div className={styles.qtifycard}>
-      <div className={styles.upperTile}>
-        <img src={CardImage} alt="cardImage" />
-        <div className={styles.cardBullet}>
-          <p>100M follows</p>
-        </div>
-      </div>
-      <div className={styles.lowerTile}>
-        <p className={styles.cardtitle}>New Bollywood</p>
-      </div>
-    </div>
-  );
+const Card = ({ data, type }) => {
+  const getCard = (type) => {
+    switch (type) {
+      case "album": {
+        const { image, follows, title, songs } = data;
+        return (
+          <div className={styles.wrapper}>
+            <div className={styles.card}>
+              <img src={image} alt="album" />
+              <div className={styles.banner}>
+                <Chip
+                  className={styles.chip}
+                  label={`${follows}`}
+                  Follows
+                  size="small"
+                />
+              </div>
+            </div>
+            <div className={styles.titleWrapper}>
+              <p>{title}</p>
+            </div>
+          </div>
+        );
+      }
+      default:
+        return <></>;
+    }
+  };
+  return getCard(type);
 };
 
-export default QtifyCard;
+export default Card;
