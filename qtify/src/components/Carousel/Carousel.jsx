@@ -25,8 +25,8 @@ const Carousel = ({ data, componentRender }) => {
         allowTouchMove
       >
         <Controls data={data} />
-        <CarouselLeftNavigation />
         <CarouselRightNavigation />
+        <CarouselLeftNavigation />
         {data.map((item) => {
           return <SwiperSlide>{componentRender(item)}</SwiperSlide>;
         })}
