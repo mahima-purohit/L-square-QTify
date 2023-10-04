@@ -1,0 +1,14 @@
+.wrapper {
+  width: 1135px;
+  height: 345px;
+  border-radius: 0px 0px 10px 10px;
+  margin-left: 152px;
+}
+.text {
+  text-align: center;
+}
+.root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

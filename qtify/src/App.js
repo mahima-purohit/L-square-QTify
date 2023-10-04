@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
+import BasicAccordion from './components/Accordion/Accordion';
 import Hero from './components/Hero/Hero';
 import Card from './components/Card/Card';
 import Section from './components/Section/Section';
@@ -45,12 +46,14 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <NavBar />
+      <NavBar topAlbumsData={topAlbumsData} newAlbumsData={newAlbumsData}
+        songsData={songsData} />
       <Hero />
       <div>
         <Section type="album" data={topAlbumsData} title="Top Albums" />
         <Section type="album" data={newAlbumsData} title="New Albums" />
         <TabSection type="songs" songsData={songsData} title="Songs" />
+        <BasicAccordion />
       </div>
     </div>
   );
