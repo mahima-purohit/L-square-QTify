@@ -9,11 +9,13 @@ const TabSection = ({ title, songsData }) => {
   const [filteredData, setFilteredData] = useState(songsData);
   const [tabValue, setTabValue] = useState("1");
 
-  useEffect(() => {}, [filteredData]);
+  useEffect(() => {
+    setFilteredData(songsData);
+  }, [songsData]);
 
   const handleTabChange = async (event, newTabValue) => {
     setTabValue(newTabValue);
-    const newData = await calculateFilteredData();
+    const newData = await calculateFilteredData(newTabValue);
     console.log(newData, "newData");
     setFilteredData(newData);
   };
@@ -26,18 +28,18 @@ const TabSection = ({ title, songsData }) => {
     return data;
   };
 
-  const calculateFilteredData = async () => {
+  const calculateFilteredData = async (newTabValue) => {
     let data = [];
     console.log("I am getting called");
-    if (tabValue === "1") {
-      data = { songsData };
-    } else if (tabValue === "2") {
+    if (newTabValue === "1") {
+      data = songsData;
+    } else if (newTabValue === "2") {
       data = newData("Rock");
-    } else if (tabValue === "3") {
+    } else if (newTabValue === "3") {
       data = newData("Pop");
-    } else if (tabValue === "2") {
+    } else if (newTabValue === "4") {
       data = newData("Jazz");
-    } else if (tabValue === "2") {
+    } else if (newTabValue === "5") {
       data = newData("Blues");
     }
     return data;
@@ -53,17 +55,10 @@ const TabSection = ({ title, songsData }) => {
       ) : (
         <div className={styles.cardWrapper}>
           <QtifyTab handleTabChange={handleTabChange} tabValue={tabValue} />
-          {tabValue === "1" ? (
-            <Carousel
-              data={songsData}
-              componentRender={(ele) => <Card data={ele} type="songs" />}
-            />
-          ) : (
-            <Carousel
-              data={songsData}
-              componentRender={(ele) => <Card data={ele} type="songs" />}
-            />
-          )}
+          <Carousel
+            data={filteredData}
+            componentRender={(ele) => <Card data={ele} type="songs" />}
+          />
         </div>
       )}
     </div>
